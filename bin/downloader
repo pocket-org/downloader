@@ -1,0 +1,26 @@
+#!/usr/bin/env php
+<?php
+
+use Composer\InstalledVersions;
+use Illuminate\Filesystem\Filesystem;
+use Symfony\Component\Console\Application as ConsoleApp;
+use Symfony\Component\Console\Command\Command;
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$version = InstalledVersions::getVersion('pocket/downloader');
+$consoleApp = new ConsoleApp('downloader', $version);
+
+$filesystem = new Filesystem();
+$allCommandFiles = $filesystem->allFiles(__DIR__ . '/../src/Commands');
+foreach ($allCommandFiles as $file) {
+    if (strtolower($file->getExtension()) !== 'php') {
+        continue;
+    }
+    $class = '\\Pocket\\Downloader\\Commands\\' . $file->getFilenameWithoutExtension();
+    if (is_subclass_of($class, Command::class)) {
+        $consoleApp->add(new $class);
+    }
+}
+
+$consoleApp->run();

@@ -1,8 +1,8 @@
 <?php
 
-namespace Pocket\Downloader\Commands;
+namespace Procket\Downloader\Commands;
 
-use Pocket\Downloader\VideoDownloader;
+use Procket\Downloader\VideoDownloader;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

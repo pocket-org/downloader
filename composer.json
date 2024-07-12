@@ -1,27 +1,23 @@
 {
-  "name": "pocket/downloader",
+  "name": "procket/downloader",
   "description": "HTTP file and video downloader.",
   "keywords": [
     "file downloader",
     "video downloader"
   ],
   "license": "MIT",
-  "repositories": [
-    {
-      "type": "path",
-      "url": "../*"
-    }
-  ],
   "require": {
     "php": "^8.2",
     "ext-iconv": "*",
     "ext-json": "*",
     "norkunas/youtube-dl-php": "^2.6",
-    "pocket/framework": "@dev"
+    "illuminate/filesystem": "^11.0",
+    "illuminate/http": "^11.0",
+    "symfony/console": "^7.1"
   },
   "autoload": {
     "psr-4": {
-      "Pocket\\Downloader\\": "src/"
+      "Procket\\Downloader\\": "src/"
     }
   },
   "config": {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Pocket\Downloader;
+namespace Procket\Downloader;
 
-use Pocket\Framework\Str;
 use GuzzleHttp\Cookie\CookieJarInterface;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Support\Str;
 use RuntimeException;
 use Throwable;
 
@@ -27,7 +27,7 @@ abstract class AbstractDownloader implements IDownloader
      * Message
      * @var mixed
      */
-    protected $msg = null;
+    protected mixed $msg = null;
 
     /**
      * File download directory

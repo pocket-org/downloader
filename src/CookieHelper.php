@@ -1,12 +1,13 @@
 <?php
 
-namespace Pocket\Downloader;
+namespace Procket\Downloader;
 
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Cookie\SetCookie;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Client\PendingRequest;
-use Pocket\Framework\Str;
+use Illuminate\Support\Str;
+use RuntimeException;
 
 class CookieHelper
 {
@@ -115,7 +116,7 @@ class CookieHelper
 
         $commentLines = [
             '# Netscape HTTP Cookie File',
-            '# http://curl.haxx.se/rfc/cookie_spec.html',
+            '# https://curl.se/rfc/cookie_spec.html',
             '# This is a generated file!  Do not edit.'
         ];
         $cookieLines = [];
@@ -149,7 +150,16 @@ class CookieHelper
         $cookieContents = implode("\n", $commentLines) . "\n\n" .
             implode("\n", $cookieLines);
 
-        if ($saveCookieFile && pocket()->ensureDirectory(dirname($saveCookieFile))) {
+        if ($saveCookieFile) {
+            $cookieFileDir = dirname($saveCookieFile);
+            $filesystem = new Filesystem();
+            $filesystem->ensureDirectoryExists($cookieFileDir);
+            if (!$filesystem->isWritable($cookieFileDir)) {
+                throw new RuntimeException(sprintf(
+                    "Directory '%s' is not writable",
+                    $cookieFileDir
+                ));
+            }
             file_put_contents($saveCookieFile, $cookieContents, LOCK_EX);
         }
 
@@ -163,7 +173,7 @@ class CookieHelper
      * ```
      * The format of the parameter cookiesMap is as follows:
      * When it is a string, it can be a Netscape Cookies file path or file content.
-     * When it is an array, the mapping array format is ['www.example.com' => ['key' => 'val', 'foo' => 'bar', ..]].
+     * When it is an array, the mapping array format is ['www.example.com' => ['key' => 'val', 'foo' => 'bar', ...]].
      * ```
      *
      * @param PendingRequest $request Request object

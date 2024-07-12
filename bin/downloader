@@ -8,7 +8,7 @@ use Symfony\Component\Console\Command\Command;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$version = InstalledVersions::getVersion('pocket/downloader');
+$version = InstalledVersions::getVersion('procket/downloader');
 $consoleApp = new ConsoleApp('downloader', $version);
 
 $filesystem = new Filesystem();
@@ -17,7 +17,7 @@ foreach ($allCommandFiles as $file) {
     if (strtolower($file->getExtension()) !== 'php') {
         continue;
     }
-    $class = '\\Pocket\\Downloader\\Commands\\' . $file->getFilenameWithoutExtension();
+    $class = '\\Procket\\Downloader\\Commands\\' . $file->getFilenameWithoutExtension();
     if (is_subclass_of($class, Command::class)) {
         $consoleApp->add(new $class);
     }

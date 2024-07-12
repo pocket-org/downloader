@@ -1,9 +1,9 @@
 <?php
 
-namespace Pocket\Downloader\Commands;
+namespace Procket\Downloader\Commands;
 
 use Illuminate\Http\Client\ConnectionException;
-use Pocket\Downloader\FileDownloader;
+use Procket\Downloader\FileDownloader;
 use Illuminate\Http\Client\RequestException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;

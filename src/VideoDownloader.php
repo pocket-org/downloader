@@ -1,6 +1,6 @@
 <?php
 
-namespace Pocket\Downloader;
+namespace Procket\Downloader;
 
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Cookie\CookieJarInterface;

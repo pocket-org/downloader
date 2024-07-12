@@ -1,6 +1,6 @@
 <?php
 
-namespace Pocket\Downloader;
+namespace Procket\Downloader;
 
 use GuzzleHttp\Psr7\Utils;
 use Illuminate\Http\Client\ConnectionException;

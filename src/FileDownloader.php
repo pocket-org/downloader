@@ -35,6 +35,7 @@ class FileDownloader extends AbstractDownloader
         }
         try {
             $this->resumable()->getRequest()
+                ->timeout(0)
                 ->sink($resource)
                 ->get($this->getUrl())
                 ->throw();
